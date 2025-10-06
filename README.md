@@ -87,9 +87,9 @@ int main()
             }
         }
         if(min!=i){
-            temp=a[j];
-                a[j]=a[j+1];
-                a[j+1]=temp;
+            temp=a[i];
+            a[i]=a[min];
+            a[min]=temp;
         }
             
         
