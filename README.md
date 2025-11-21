@@ -102,7 +102,7 @@ int main()
 }
 ```
 
-###### merge sort
+##### merge sort
 ```c
 #include <stdio.h>
 
