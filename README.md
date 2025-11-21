@@ -101,3 +101,73 @@ int main()
     return 0;
 }
 ```
+
+```c
+#include <stdio.h>
+
+void merge(int A[], int lb, int mid, int ub) {
+    int i = lb;
+    int j = mid + 1;
+    int k = lb;
+
+    int B[1000]; // temporary array (you can also malloc dynamically)
+
+    while (i <= mid && j <= ub) {
+        if (A[i] <= A[j]) {
+            B[k] = A[i];
+            i++;
+        } else {
+            B[k] = A[j];
+            j++;
+        }
+        k++;
+    }
+
+    // Copy remaining elements from left part
+    while (i <= mid) {
+        B[k] = A[i];
+        i++;
+        k++;
+    }
+
+    // Copy remaining elements from right part
+    while (j <= ub) {
+        B[k] = A[j];
+        j++;
+        k++;
+    }
+
+    // Copy back to original array
+    for (i = lb; i <= ub; i++) {
+        A[i] = B[i];
+    }
+}
+
+void mergeSort(int A[], int lb, int ub) {
+    if (lb < ub) {
+        int mid = (lb + ub) / 2;
+
+        mergeSort(A, lb, mid);
+        mergeSort(A, mid + 1, ub);
+        merge(A, lb, mid, ub);
+    }
+}
+
+int main() {
+    int A[50], n;
+    printf("Enter number of elements: ");
+    scanf("%d", &n);
+
+    printf("Enter %d elements:\n", n);
+    for (int i = 0; i < n; i++)
+        scanf("%d", &A[i]);
+
+    mergeSort(A, 0, n - 1);
+
+    printf("Sorted array:\n");
+    for (int i = 0; i < n; i++)
+        printf("%d ", A[i]);
+
+    return 0;
+}
+```
