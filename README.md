@@ -1,4 +1,11 @@
 # Sorting-and-searching-
+### index
+###### bubble sort
+###### insertion sort
+###### selection sort
+###### merge sort
+
+
 
 #### bubble sort 
 ```c
