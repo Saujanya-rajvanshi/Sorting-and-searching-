@@ -5,6 +5,7 @@
 3. selection sort
 4. merge sort
 5. quick sort
+6. heap sort
 
 
 #### bubble sort 
