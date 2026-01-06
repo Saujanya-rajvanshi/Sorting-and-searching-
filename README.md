@@ -6,6 +6,7 @@
 - [merge sort](#merge-sort)
 - [quick sort](#quick-sort)
 - [heap sort](#heap-sort)
+- [comparison](#comparison)
 
 
 #### bubble sort 
@@ -224,6 +225,9 @@ int main() {
     return 0;
 }
 ```
+## comparison 
+
+---
 ```cpp
 +---------------------------+-----------------------------+------------------------------+
 |        BUBBLE SORT        |        INSERTION SORT       |        SELECTION SORT        |
@@ -244,3 +248,4 @@ int main() {
 +---------------------------+-----------------------------+------------------------------+
 
 ```
+---
