@@ -243,44 +243,65 @@ int main() {
 
 ##### quick sort
 ```cpp
-#include <bits/stdc++.h>
-using namespace std;
+#include <stdio.h>
 
-int partition(vector<int> &arr, int low, int high) {
-    int pivot = arr[low];
-    int i = low;
-    int j = high;
+int partition(int A[], int lb, int ub)
+{
+    int pivot = A[lb];
+    int start = lb;
+    int end = ub;
+    int temp;
 
-    while (i < j) {
-        while (arr[i] <= pivot && i <= high - 1)
-            i++;
+    while (start < end)
+    {
+        while (A[start] <= pivot)
+            start++;
 
-        while (arr[j] > pivot && j >= low + 1)
-            j--;
+        while (A[end] > pivot)
+            end--;
 
-        if (i < j)
-            swap(arr[i], arr[j]);
+        if (start < end)
+        {
+            temp = A[start];
+            A[start] = A[end];
+            A[end] = temp;
+        }
     }
 
-    swap(arr[low], arr[j]);
-    return j;
+    temp = A[lb];
+    A[lb] = A[end];
+    A[end] = temp;
+
+    return end;
 }
 
-void qs(vector<int> &arr, int low, int high) {
-    if (low < high) {
-        int pIndex = partition(arr, low, high);
-        qs(arr, low, pIndex - 1);
-        qs(arr, pIndex + 1, high);
+void quickSort(int A[], int lb, int ub)
+{
+    if (lb < ub)
+    {
+        int loc = partition(A, lb, ub);
+        quickSort(A, lb, loc - 1);
+        quickSort(A, loc + 1, ub);
     }
 }
 
-int main() {
-    vector<int> arr = {5, 2, 9, 1, 5, 6};
+int main()
+{
+    int A[50], n, i;
 
-    qs(arr, 0, arr.size() - 1);
+    printf("Enter number of elements: ");
+    scanf("%d", &n);
 
-    for (int x : arr)
-        cout << x << " ";
+    printf("Enter elements:\n");
+    for (i = 0; i < n; i++)
+        scanf("%d", &A[i]);
+
+    quickSort(A, 0, n - 1);
+
+    printf("Sorted array:\n");
+    for (i = 0; i < n; i++)
+        printf("%d ", A[i]);
+
     return 0;
 }
 ```
