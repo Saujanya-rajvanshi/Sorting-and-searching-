@@ -10,6 +10,18 @@
 
 
 #### bubble sort 
+#### algorithm
+* iterate , compare two adjacent elem and sort 
+```
+ for(i  = 0 to n-1 , i++)   //if n = 5 , n-1 = 4 so loop run from 0 to 4
+    for(j = 0 to n-1-i j++)   //if the previouuse index in sorted we minus i to minimize the iteration 
+        compare if(a[j]>a[j+1])  // the element is larger than the next next element or not 
+                temp=a[j];       |
+                a[j]=a[j+1];     | - -  // swaping j and j+1
+                a[j+1]=temp;     |
+```
+
+#### code 
 ```c
 #include <stdio.h>
 #include <conio.h>
@@ -41,6 +53,24 @@ int main()
 }
 ```
 #### insertion sort
+#### algorithm
+* devide , comre with previous , find correct position , insert
+```
+devide the given list into two part sorted and unsorted
+initially the first element is considered sorted list  [ sorted  |     unsorted    ]
+
+for(i  = 1 to n , i++)   //if n = 5 loop run from 1 to 4, 0 is considered sorted
+    temp=a[i];   // take the element in temprory variable 
+    j=i-1;    // as we wii compare the element with elem in sorted list 
+    while(j>=0 && a[j]>temp)   // while the sorted list has no elem left and check if the elem is greater or not to find the right place
+        a[j+1]=a[j];   // shift element to the right 
+        j--;   // decrement j
+        }
+        a[j+1]=temp;  // store elem at right place 
+
+```
+
+#### code 
 ```c
 #include <stdio.h>
 #include <conio.h>
@@ -74,6 +104,22 @@ int main()
 ```
 
 #### selection sort
+#### algorithm
+find min elem , swap it with the (0 to n) index 
+```
+ for(i  = 0 to n-1 , i++)   // if n = 5 , n-1 = 4 so loop run from 0 to 4
+     min=i;  
+     for(j = i+1 to n , j++)   // if n = 5 , i+1 = 1 
+         if(a[j]<a[min])     // if j < min
+         min=j;    // take j as min
+         if(min!=i){
+            temp=a[i];       |
+            a[i]=a[min];     | --- // swap min with i ( if min != i)
+            a[min]=temp;     | 
+        }
+```
+
+#### code 
 ```c
 #include <stdio.h>
 #include <conio.h>
