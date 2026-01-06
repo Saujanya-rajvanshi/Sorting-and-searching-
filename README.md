@@ -158,6 +158,18 @@ int main()
 ```
 
 ##### merge sort
+#### algorithm 
+devide from mid upto one elem , merge 
+```
+void mergeSort(int A[], int lb, int ub) 
+    if (lb < ub) 
+        int mid = (lb + ub) / 2;
+
+        mergeSort(A, lb, mid);  // devide from start to half
+        mergeSort(A, mid + 1, ub);  // devide from half to last 
+        merge(A, lb, mid, ub);   // merging
+```
+#### code     
 ```c
 #include <stdio.h>
 
