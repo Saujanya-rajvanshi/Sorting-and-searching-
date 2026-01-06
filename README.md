@@ -168,6 +168,7 @@ void merge(int A[], int lb, int mid, int ub) {
 
     int B[1000]; // temporary array (you can also malloc dynamically)
 
+    // merging of element in the temprory array
     while (i <= mid && j <= ub) {
         if (A[i] <= A[j]) {
             B[k] = A[i];
