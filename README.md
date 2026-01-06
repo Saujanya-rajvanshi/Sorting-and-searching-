@@ -1,11 +1,11 @@
 # Sorting-and-searching-
 ### index
-1. bubble sort
-2. insertion sort
-3. selection sort
-4. merge sort
-5. quick sort
-6. heap sort
+- [bubble sort](#bubble-sort)
+- [insertion sort](#insertion-sort)
+- [selection sort](#selection-sort)
+- [merge sort](#merge-sort)
+- [quick sort](#quick-sort)
+- [heap sort](#heap-sort)
 
 
 #### bubble sort 
