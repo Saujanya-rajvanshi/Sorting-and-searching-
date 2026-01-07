@@ -305,6 +305,192 @@ int main()
     return 0;
 }
 ```
+
+#### heap sort
+
+---
+
+## 🔹 Heap 
+
+* **Heap** → Complete Binary Tree
+* Stored using **array**
+* Indexing (1-based):
+
+  * Parent = `i/2`
+  * Left child = `2i`
+  * Right child = `2i+1`
+
+---
+
+## 🔹 Max Heap
+
+**Property:**
+`Parent ≥ Children`
+👉 Maximum element is at **root**
+
+### Example
+
+```
+        70
+      /    \
+    60      40
+   /  \    /  \
+ 50  35  39  16
+```
+
+---
+
+## 🔹 Min Heap
+
+**Property:**
+`Parent ≤ Children`
+👉 Minimum element is at **root**
+
+### Example
+
+```
+        10
+      /    \
+    20      30
+   /  \    /  \
+ 40  50  60  70
+```
+
+---
+
+# 🔸 MAX HEAP OPERATIONS (C CODE)
+
+## ✅ Max Heap Insertion
+
+```c
+void insertMaxHeap(int A[], int *n, int value)
+{
+    (*n)++;
+    int i = *n;
+    A[i] = value;
+
+    while (i > 1 && A[i/2] < A[i])
+    {
+        int temp = A[i];
+        A[i] = A[i/2];
+        A[i/2] = temp;
+        i = i/2;
+    }
+}
+```
+
+---
+
+## ❌ Max Heap Deletion (Delete Root)
+
+```c
+void deleteMaxHeap(int A[], int *n)
+{
+    if (*n == 0) return;
+
+    A[1] = A[*n];
+    (*n)--;
+
+    int i = 1;
+    while (2*i <= *n)
+    {
+        int largest = i;
+        int left = 2*i;
+        int right = 2*i + 1;
+
+        if (left <= *n && A[left] > A[largest])
+            largest = left;
+
+        if (right <= *n && A[right] > A[largest])
+            largest = right;
+
+        if (largest != i)
+        {
+            int temp = A[i];
+            A[i] = A[largest];
+            A[largest] = temp;
+            i = largest;
+        }
+        else
+            break;
+    }
+}
+```
+
+---
+
+# 🔸 MIN HEAP OPERATIONS (C CODE)
+
+## ✅ Min Heap Insertion
+
+```c
+void insertMinHeap(int A[], int *n, int value)
+{
+    (*n)++;
+    int i = *n;
+    A[i] = value;
+
+    while (i > 1 && A[i/2] > A[i])
+    {
+        int temp = A[i];
+        A[i] = A[i/2];
+        A[i/2] = temp;
+        i = i/2;
+    }
+}
+```
+
+---
+
+## ❌ Min Heap Deletion (Delete Root)
+
+```c
+void deleteMinHeap(int A[], int *n)
+{
+    if (*n == 0) return;
+
+    A[1] = A[*n];
+    (*n)--;
+
+    int i = 1;
+    while (2*i <= *n)
+    {
+        int smallest = i;
+        int left = 2*i;
+        int right = 2*i + 1;
+
+        if (left <= *n && A[left] < A[smallest])
+            smallest = left;
+
+        if (right <= *n && A[right] < A[smallest])
+            smallest = right;
+
+        if (smallest != i)
+        {
+            int temp = A[i];
+            A[i] = A[smallest];
+            A[smallest] = temp;
+            i = smallest;
+        }
+        else
+            break;
+    }
+}
+```
+
+---
+
+## 🔹 Time Complexity (Important for exams)
+
+| Operation | Time     |
+| --------- | -------- |
+| Insertion | O(log n) |
+| Deletion  | O(log n) |
+| Heapify   | O(log n) |
+
+---
+
+
 ## comparison 
 
 ---
