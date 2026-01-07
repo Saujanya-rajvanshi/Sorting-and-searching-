@@ -489,9 +489,101 @@ void deleteMinHeap(int A[], int *n)
 | Heapify   | O(log n) |
 
 ---
+### heapify 
+BUILD-MAX-HEAP(A, n)     → O(n)
+for i = n down to 2 //largest non leaf node (n/2)  if index start from 0 (n/2 - 1)
+    exchange A[1] ↔ A[i]
+    heap-size = heap-size - 1
+    MAX-HEAPIFY(A, 1)
+
+# searching 
+
+### 🔍 Linear Search 
+
+```c
+int main()
+{
+    int a[50], n, key, i;
+
+    scanf("%d", &n);
+    for (i = 0; i < n; i++)
+        scanf("%d", &a[i]);
+
+    scanf("%d", &key);
+
+    for (i = 0; i < n; i++)
+        if (a[i] == key)
+        {
+            printf("Found at %d", i);
+            return 0;
+        }
+
+    printf("Not found");
+    return 0;
+}
+```
+
+---
+
+### 🔍 Binary Search — **main only** (sorted array)
+
+```c
+int main()
+{
+    int a[50], n, key, low = 0, high, mid, i;
+
+    scanf("%d", &n);
+    for (i = 0; i < n; i++)
+        scanf("%d", &a[i]);
+
+    scanf("%d", &key);
+    high = n - 1;
+
+    while (low <= high)
+    {
+        mid = (low + high) / 2;
+
+        if (a[mid] == key)
+        {
+            printf("Found at %d", mid);
+            return 0;
+        }
+        else if (a[mid] < key)
+            low = mid + 1;
+        else
+            high = mid - 1;
+    }
+
+    printf("Not found");
+    return 0;
+}
+```
 
 
 ## comparison 
+
+---
+
+## 🔍 Searching Algorithms
+
+* **Linear Search** → Best: **O(1)** | Average: **O(n)** | Worst: **O(n)**
+* **Binary Search** → Best: **O(1)** | Average: **O(log n)** | Worst: **O(log n)**
+
+---
+
+## 🔃 Sorting Algorithms
+
+* **Bubble Sort** → Best: **O(n)** | Average: **O(n²)** | Worst: **O(n²)**
+* **Selection Sort** → Best/Average/Worst: **O(n²)**
+* **Insertion Sort** → Best: **O(n)** | Average: **O(n²)** | Worst: **O(n²)**
+* **Merge Sort** → Best/Average/Worst: **O(n log n)**
+* **Quick Sort** → Best/Average: **O(n log n)** | Worst: **O(n²)**
+* **Heap Sort** → Best/Average/Worst: **O(n log n)**
+* **Counting Sort** → Best/Average/Worst: **O(n + k)**
+* **Radix Sort** → Best/Average/Worst: **O(d(n + k))**
+* **Bucket Sort** → Best/Average: **O(n + k)** | Worst: **O(n²)**
+
+---
 
 ---
 ```cpp
