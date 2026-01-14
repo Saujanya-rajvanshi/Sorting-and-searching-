@@ -1,5 +1,6 @@
 # Sorting-and-searching-
 ### index
+##### sorting
 - [bubble sort](#bubble-sort)
 - [insertion sort](#insertion-sort)
 - [selection sort](#selection-sort)
@@ -7,6 +8,8 @@
 - [quick sort](#quick-sort)
 - [heap sort](#heap-sort)
 - [comparison](#comparison)
+  
+###### searching 
 
 
 #### bubble sort 
