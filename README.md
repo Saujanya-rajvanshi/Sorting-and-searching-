@@ -610,3 +610,47 @@ int main()
 
 ```
 ---
+
+# SEARCHING 
+
+### **Binary Search[1D,2D,Array,Search Space]**
+
+#### BS on 1D Arrays
+
+- [binary search to find x in sorted array](#binary-search-to-find-x-in-sorted-array)
+- [implement lower bound](#implement-lower-bound)
+- [implement upper bound](#implement-upper-bound)
+- [search insert position](#search-insert-position)
+- [floor/ceil in sorted array](#floorceil-in-sorted-array)
+- [find the first or last occurrence of a given number in a sorted array](#find-the-first-or-last-occurrence-of-a-given-number-in-a-sorted-array)
+- [count occurrences of a number in a sorted array with duplicates](#count-occurrences-of-a-number-in-a-sorted-array-with-duplicates)
+- [count occurrences of a number in a sorted array with duplicates](#count-occurrences-of-a-number-in-a-sorted-array-with-duplicates)
+- [search in rotated sorted array i](#search-in-rotated-sorted-array-i)
+- [search in rotated sorted array ii](#search-in-rotated-sorted-array-ii)
+- [find minimum in rotated sorted array](#find-minimum-in-rotated-sorted-array)
+- [find out how many times has an array been rotated](#find-out-how-many-times-has-an-array-been-rotated)
+- [single element in a sorted array](#single-element-in-a-sorted-array)
+- [find peak element](#find-peak-element)
+
+#### BS on Answers
+
+- [find square root of a number in log n](#find-square-root-of-a-number-in-log-n)
+- [find the nth root of a number using binary search](#find-the-nth-root-of-a-number-using-binary-search)
+- [koko eating bananas](#koko-eating-bananas)
+- [minimum days to make m bouquets](#minimum-days-to-make-m-bouquets)
+- [find the smallest divisor](#find-the-smallest-divisor)
+- [capacity to ship packages within d days](#capacity-to-ship-packages-within-d-days)
+- [kth missing positive number](#kth-missing-positive-number)
+- [aggressive cows](#aggressive-cows)
+- [book allocation problem](#book-allocation-problem)
+- [split array - largest sum](#split-array---largest-sum)
+- [painter's partition](#painters-partition)
+- [minimize max distance to gas station](#minimize-max-distance-to-gas-station)
+- [median of 2 sorted arrays](#median-of-2-sorted-arrays)
+- [kth element of 2 sorted arrays](#kth-element-of-2-sorted-arrays)
+
+#### BS on 2D Arrays
+
+
+
+
