@@ -8,6 +8,7 @@
 - [quick sort](#quick-sort)
 - [heap sort](#heap-sort)
 - [comparison](#comparison)
+- [sorting visualizer](https://visualgo.net/en/sorting)
   
 ###### searching 
 
