@@ -312,27 +312,22 @@ int main()
 
 #### heap sort
 
----
-
-## 🔹 Heap 
-
+### Heap 
 * **Heap** → Complete Binary Tree
 * Stored using **array**
 * Indexing (1-based):
 
-  * Parent = `i/2`
+  * Parent = `i/2`floar
   * Left child = `2i`
   * Right child = `2i+1`
 
----
-
-## 🔹 Max Heap
+### Max Heap
 
 **Property:**
 `Parent ≥ Children`
 👉 Maximum element is at **root**
 
-### Example
+#### Example
 
 ```
         70
@@ -342,15 +337,13 @@ int main()
  50  35  39  16
 ```
 
----
-
-## 🔹 Min Heap
+### Min Heap
 
 **Property:**
 `Parent ≤ Children`
 👉 Minimum element is at **root**
 
-### Example
+#### Example
 
 ```
         10
@@ -360,12 +353,11 @@ int main()
  40  50  60  70
 ```
 
----
+### MAX HEAP OPERATIONS
 
-# 🔸 MAX HEAP OPERATIONS (C CODE)
-
-## ✅ Max Heap Insertion
-
+#### Max Heap Insertion
+parent node = [i/2]floar
+TC = O(log n) -> height of heap
 ```c
 void insertMaxHeap(int A[], int *n, int value)
 {
@@ -383,9 +375,7 @@ void insertMaxHeap(int A[], int *n, int value)
 }
 ```
 
----
-
-## ❌ Max Heap Deletion (Delete Root)
+#### Max Heap Deletion (Delete Root)
 
 ```c
 void deleteMaxHeap(int A[], int *n)
@@ -421,11 +411,9 @@ void deleteMaxHeap(int A[], int *n)
 }
 ```
 
----
+### MIN HEAP OPERATIONS 
 
-# 🔸 MIN HEAP OPERATIONS (C CODE)
-
-## ✅ Min Heap Insertion
+#### Min Heap Insertion
 
 ```c
 void insertMinHeap(int A[], int *n, int value)
@@ -444,9 +432,7 @@ void insertMinHeap(int A[], int *n, int value)
 }
 ```
 
----
-
-## ❌ Min Heap Deletion (Delete Root)
+#### Min Heap Deletion (Delete Root)
 
 ```c
 void deleteMinHeap(int A[], int *n)
@@ -482,9 +468,7 @@ void deleteMinHeap(int A[], int *n)
 }
 ```
 
----
-
-## 🔹 Time Complexity (Important for exams)
+### Time Complexity 
 
 | Operation | Time     |
 | --------- | -------- |
@@ -492,13 +476,70 @@ void deleteMinHeap(int A[], int *n)
 | Deletion  | O(log n) |
 | Heapify   | O(log n) |
 
----
 ### heapify 
 BUILD-MAX-HEAP(A, n)     → O(n)
 for i = n down to 2 //largest non leaf node (n/2)  if index start from 0 (n/2 - 1)
     exchange A[1] ↔ A[i]
     heap-size = heap-size - 1
     MAX-HEAPIFY(A, 1)
+
+#### max heapify
+```cpp
+#include <bits/stdc++.h>
+using namespace std;
+
+void maxHeapify(vector<int> &A, int n, int i) {
+    int largest = i;
+    int left = 2*i + 1;      // left child
+    int right = 2*i + 2;     // right child
+
+    // If left child is larger than root
+    if(left < n && A[left] > A[largest])
+        largest = left;
+
+    // If right child is larger than largest so far
+    if(right < n && A[right] > A[largest])
+        largest = right;
+
+    // If largest is not root
+    if(largest != i) {
+        swap(A[i], A[largest]);
+        maxHeapify(A, n, largest);  // recursively heapify
+    }
+}
+
+int main() {
+    vector<int> A = {4, 10, 3, 5, 1};
+    int n = A.size();
+
+    // Build Max Heap
+    for(int i = n/2 - 1; i >= 0; i--) {
+        maxHeapify(A, n, i);
+    }
+
+    cout << "Max Heap: ";
+    for(int x : A)
+        cout << x << " ";
+
+    return 0;
+}
+```
+
+
+
+---
+
+
+
+
+
+
+
+
+
+
+
+
 
 # searching 
 
