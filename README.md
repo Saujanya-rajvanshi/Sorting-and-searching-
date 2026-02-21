@@ -605,6 +605,21 @@ int main()
 ```
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 ## comparison 
 
 ---
@@ -653,7 +668,19 @@ int main()
 ```
 ---
 
-# SEARCHING 
+
+
+
+
+
+
+
+
+
+
+
+
+# BINARY SEARCHING 
 
 ### **Binary Search[1D,2D,Array,Search Space]**
 
