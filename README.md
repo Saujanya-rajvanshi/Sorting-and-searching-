@@ -1,4 +1,13 @@
 # Sorting-and-searching-
+
+
+- [SORTING](#SORTING)
+- [SEARCHING](#SEARCHING)
+- [BINARY SEARCHING](#BINARY-SEARCHING)
+
+
+# SORTING 
+
 ### index
 ##### sorting
 - [bubble sort](#bubble-sort)
@@ -10,8 +19,6 @@
 - [comparison](#comparison)
 - [sorting visualizer](https://visualgo.net/en/sorting)
   
-###### searching 
-
 
 #### bubble sort 
 #### algorithm
@@ -541,7 +548,7 @@ int main() {
 
 
 
-# searching 
+# SEARCHING 
 
 ### 🔍 Linear Search 
 
