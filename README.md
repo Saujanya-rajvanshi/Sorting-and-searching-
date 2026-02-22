@@ -692,8 +692,7 @@ int main()
 **Binary Search[1D,2D,Array,Search Space]**
 
 #### BS on 1D Arrays
-
-- [binary search to find x in sorted array](#binary-search-to-find-x-in-sorted-array)
+- [basic](#basic)
 - [implement lower bound](#Lower-Bound)
 - [implement upper bound](#Upper-Bound)
 - [search insert position](#Search-Insert-Position)
