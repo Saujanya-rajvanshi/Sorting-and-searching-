@@ -1018,6 +1018,7 @@ int findFloor(int arr[], int n, int x) {
 * **First occurrence → lowerBound**
 * **Last occurrence → upperBound - 1**
 
+* BETTER APPROACH
 ```cpp
 #include <iostream>
 #include <vector>
@@ -1087,6 +1088,70 @@ int main() {
 First: 1
 Last: 3
 ```
+
+* OPTIMAL APPROACH
+
+```cpp
+
+// Find First Occurrence
+
+int firstOccurrence(int arr[], int n, int x) {
+    int low = 0, high = n - 1;
+    int first = -1;
+
+    while(low <= high) {
+        int mid = low + (high - low) / 2;
+
+        if(arr[mid] == x) {
+            first = mid;
+            high = mid - 1;   // move left
+        }
+        else if(arr[mid] < x) {
+            low = mid + 1;
+        }
+        else {
+            high = mid - 1;
+        }
+    }
+    return first;
+}
+
+
+// Find Last Occurrence
+
+int lastOccurrence(int arr[], int n, int x) {
+    int low = 0, high = n - 1;
+    int last = -1;
+
+    while(low <= high) {
+        int mid = low + (high - low) / 2;
+
+        if(arr[mid] == x) {
+            last = mid;
+            low = mid + 1;   // move right
+        }
+        else if(arr[mid] < x) {
+            low = mid + 1;
+        }
+        else {
+            high = mid - 1;
+        }
+    }
+    return last;
+}
+
+
+// Combined Function
+
+pair<int,int> firstAndLast(int arr[], int n, int x) {
+    int first = firstOccurrence(arr, n, x);
+    int last = lastOccurrence(arr, n, x);
+    return {first, last};
+}
+```
+
+
+
 
 
 ## count occurrences of a number in a sorted array with duplicates
