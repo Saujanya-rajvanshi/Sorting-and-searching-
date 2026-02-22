@@ -1012,6 +1012,83 @@ int findFloor(int arr[], int n, int x) {
 
 
 ## find the first or last occurrence of a given number in a sorted array
+
+#### Approach
+
+* **First occurrence → lowerBound**
+* **Last occurrence → upperBound - 1**
+
+```cpp
+#include <iostream>
+#include <vector>
+using namespace std;
+
+int lowerBound(vector<int>& arr, int n, int x) {
+    int low = 0, high = n - 1;
+    int ans = n;
+
+    while(low <= high) {
+        int mid = low + (high - low) / 2;
+
+        if(arr[mid] >= x) {
+            ans = mid;
+            high = mid - 1;
+        }
+        else {
+            low = mid + 1;
+        }
+    }
+    return ans;
+}
+
+int upperBound(vector<int>& arr, int n, int x) {
+    int low = 0, high = n - 1;
+    int ans = n;
+
+    while(low <= high) {
+        int mid = low + (high - low) / 2;
+
+        if(arr[mid] > x) {
+            ans = mid;
+            high = mid - 1;
+        }
+        else {
+            low = mid + 1;
+        }
+    }
+    return ans;
+}
+
+pair<int, int> firstAndLastPosition(vector<int>& arr, int n, int k) {
+
+    int lb = lowerBound(arr, n, k);
+
+    if(lb == n || arr[lb] != k)
+        return {-1, -1};
+
+    int ub = upperBound(arr, n, k);
+
+    return {lb, ub - 1};
+}
+
+int main() {
+    vector<int> arr = {1,2,2,2,3,4,5};
+    int n = arr.size();
+    int k = 2;
+
+    pair<int,int> ans = firstAndLastPosition(arr, n, k);
+
+    cout << "First: " << ans.first << endl;
+    cout << "Last: " << ans.second << endl;
+}
+```
+
+```
+First: 1
+Last: 3
+```
+
+
 ## count occurrences of a number in a sorted array with duplicates
 ## count occurrences of a number in a sorted array with duplicates
 ## search in rotated sorted array i
