@@ -690,11 +690,51 @@ int main()
 # BINARY SEARCHING 
 
 - [basic](#basic)
-- [lower bound](#Lower-Bound)
-- [upper bound](#Upper-Bound)
-- [Search Insert Position](#Search-Insert-Position)
+- [lower bound]()
+- [upper bound]()
+- [Search Insert Position]()
+
+**Binary Search[1D,2D,Array,Search Space]**
+
+#### BS on 1D Arrays
+
+- [binary search to find x in sorted array](#binary-search-to-find-x-in-sorted-array)
+- [implement lower bound](#Lower-Bound)
+- [implement upper bound](#Upper-Bound)
+- [search insert position](#Search-Insert-Position)
+- [floor/ceil in sorted array](#FloorCeil-in-Sorted-Array)
+- [find the first or last occurrence of a given number in a sorted array](#find-the-first-or-last-occurrence-of-a-given-number-in-a-sorted-array)
+- [count occurrences of a number in a sorted array with duplicates](#count-occurrences-of-a-number-in-a-sorted-array-with-duplicates)
+- [count occurrences of a number in a sorted array with duplicates](#count-occurrences-of-a-number-in-a-sorted-array-with-duplicates)
+- [search in rotated sorted array i](#search-in-rotated-sorted-array-i)
+- [search in rotated sorted array ii](#search-in-rotated-sorted-array-ii)
+- [find minimum in rotated sorted array](#find-minimum-in-rotated-sorted-array)
+- [find out how many times has an array been rotated](#find-out-how-many-times-has-an-array-been-rotated)
+- [single element in a sorted array](#single-element-in-a-sorted-array)
+- [find peak element](#find-peak-element)
+
+#### BS on Answers
+
+- [find square root of a number in log n](#find-square-root-of-a-number-in-log-n)
+- [find the nth root of a number using binary search](#find-the-nth-root-of-a-number-using-binary-search)
+- [koko eating bananas](#koko-eating-bananas)
+- [minimum days to make m bouquets](#minimum-days-to-make-m-bouquets)
+- [find the smallest divisor](#find-the-smallest-divisor)
+- [capacity to ship packages within d days](#capacity-to-ship-packages-within-d-days)
+- [kth missing positive number](#kth-missing-positive-number)
+- [aggressive cows](#aggressive-cows)
+- [book allocation problem](#book-allocation-problem)
+- [split array - largest sum](#split-array---largest-sum)
+- [painter's partition](#painters-partition)
+- [minimize max distance to gas station](#minimize-max-distance-to-gas-station)
+- [median of 2 sorted arrays](#median-of-2-sorted-arrays)
+- [kth element of 2 sorted arrays](#kth-element-of-2-sorted-arrays)
+
+#### BS on 2D Arrays
 
 
+
+---
 ## basic 
 ### Real Life Example
 
@@ -816,34 +856,9 @@ This prevents overflow.
 
 ### Conditions to Use Binary Search
 
-✔ Array must be sorted
-✔ Random access available (array, vector)
-✔ Searching in monotonic condition
-
-### Languages (Basic Template)
-
-#### C++
-
-Same as above.
-
-#### Java
-
-```java
-int mid = low + (high - low) / 2;
-```
-
-#### Python
-
-```python
-while low <= high:
-    mid = (low + high) // 2
-```
-
-#### JavaScript
-
-```javascript
-let mid = Math.floor((low + high) / 2);
-```
+* Array must be sorted
+* Random access available (array, vector)
+* Searching in monotonic condition
 
 ### Important Variations 
 
@@ -866,52 +881,25 @@ let mid = Math.floor((low + high) / 2);
 
 ## Lower Bound 
 
-Definition : <br>
-**Lower Bound = First index where element ≥ target**
+Definition : **Lower Bound = First index where element ≥ target**
 <br>
 It gives:
 
 * First occurrence of target
 * Or position where target should be inserted
 <br>
-⚠ Array must be **sorted**
+Array must be sorted
+<br>
 <br>
 Example :
 
 ```cpp
 arr = {1, 2, 3, 3, 5, 8, 8, 10, 11}
 target = 8
+
+Output → 5 (first 8)
+
 ```
-
-Output → **5** (first 8)
-<br>
-If:
-
-```cpp
-target = 4
-```
-
-Output → **4** (position of 5)
-
----
-
-If:
-
-```cpp
-target = 20
-```
-
-Output → **n** (out of range)
-
-### Logic
-
-* If `arr[mid] >= target`
-  → This **may be answer**
-  → Move left (`high = mid - 1`)
-* Else
-  → Move right (`low = mid + 1`)
-
-Time Complexity → **O(log n)**
 
 ### Code 
 
@@ -941,43 +929,19 @@ int lowerBound(int arr[], int n, int target) {
 
 ## Upper Bound
 
-Definition : <br>
-**Upper Bound = First index where element > target**
+Definition : **Upper Bound = First index where element > target**
 <br>
-⚠ Array must be **sorted**
+Array must be **sorted**
+<br>
 <br>
 Example : 
 ```cpp
 arr = {1, 2, 3, 3, 5, 8, 8, 10, 11}
 target = 8
-```
-<br>
-Output → **7** (first element > 8 → 10)
-<br>
-If:
-```cpp
-target = 3
-```
-<br>
-Output → **4** (first element > 3 → 5)
-<br>
-If:
-<br>
-```cpp
-target = 20
-```
-<br>
-Output → **n** (out of range)
 
-### Logic
+Output → 7 (first element > 8 → 10)
 
-* If `arr[mid] > target`
-  → This **may be answer**
-  → Move left (`high = mid - 1`)
-* Else
-  → Move right (`low = mid + 1`)
-
-Time Complexity → **O(log n)**
+```
 
 ### Code 
 
@@ -1054,7 +1018,7 @@ int main() {
 }
 ```
 
-## finding floar
+## FloorCeil in Sorted Array
 
 ```cpp
 int findFloor(int arr[], int n, int x) {
@@ -1078,6 +1042,15 @@ int findFloor(int arr[], int n, int x) {
 ```
 
 
+## find the first or last occurrence of a given number in a sorted array
+## count occurrences of a number in a sorted array with duplicates
+## count occurrences of a number in a sorted array with duplicates
+## search in rotated sorted array i
+## search in rotated sorted array ii
+## find minimum in rotated sorted array
+## find out how many times has an array been rotated
+## single element in a sorted array
+## find peak element
 
 
 
@@ -1087,43 +1060,6 @@ int findFloor(int arr[], int n, int x) {
 
 
 
-### **Binary Search[1D,2D,Array,Search Space]**
-
-#### BS on 1D Arrays
-
-- [binary search to find x in sorted array](#binary-search-to-find-x-in-sorted-array)
-- [implement lower bound](#implement-lower-bound)
-- [implement upper bound](#implement-upper-bound)
-- [search insert position](#search-insert-position)
-- [floor/ceil in sorted array](#floorceil-in-sorted-array)
-- [find the first or last occurrence of a given number in a sorted array](#find-the-first-or-last-occurrence-of-a-given-number-in-a-sorted-array)
-- [count occurrences of a number in a sorted array with duplicates](#count-occurrences-of-a-number-in-a-sorted-array-with-duplicates)
-- [count occurrences of a number in a sorted array with duplicates](#count-occurrences-of-a-number-in-a-sorted-array-with-duplicates)
-- [search in rotated sorted array i](#search-in-rotated-sorted-array-i)
-- [search in rotated sorted array ii](#search-in-rotated-sorted-array-ii)
-- [find minimum in rotated sorted array](#find-minimum-in-rotated-sorted-array)
-- [find out how many times has an array been rotated](#find-out-how-many-times-has-an-array-been-rotated)
-- [single element in a sorted array](#single-element-in-a-sorted-array)
-- [find peak element](#find-peak-element)
-
-#### BS on Answers
-
-- [find square root of a number in log n](#find-square-root-of-a-number-in-log-n)
-- [find the nth root of a number using binary search](#find-the-nth-root-of-a-number-using-binary-search)
-- [koko eating bananas](#koko-eating-bananas)
-- [minimum days to make m bouquets](#minimum-days-to-make-m-bouquets)
-- [find the smallest divisor](#find-the-smallest-divisor)
-- [capacity to ship packages within d days](#capacity-to-ship-packages-within-d-days)
-- [kth missing positive number](#kth-missing-positive-number)
-- [aggressive cows](#aggressive-cows)
-- [book allocation problem](#book-allocation-problem)
-- [split array - largest sum](#split-array---largest-sum)
-- [painter's partition](#painters-partition)
-- [minimize max distance to gas station](#minimize-max-distance-to-gas-station)
-- [median of 2 sorted arrays](#median-of-2-sorted-arrays)
-- [kth element of 2 sorted arrays](#kth-element-of-2-sorted-arrays)
-
-#### BS on 2D Arrays
 
 
 
