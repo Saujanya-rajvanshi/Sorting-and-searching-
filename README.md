@@ -1151,6 +1151,14 @@ pair<int,int> firstAndLast(int arr[], int n, int x) {
 ```
 
 
+| Feature             | First/Last Code | LB + UB Code       |
+| ------------------- | --------------- | ------------------ |
+| Time Complexity     | O(log n)        | O(log n)           |
+| Readability         | Easy            | Clean & structured |
+| Reusable            | ❌ Not much      | ✅ Highly reusable  |
+| Interview Preferred | ✅               | ⭐⭐⭐ More preferred |
+
+
 
 
 
