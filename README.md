@@ -689,11 +689,6 @@ int main()
 
 # BINARY SEARCHING 
 
-- [basic](#basic)
-- [lower bound]()
-- [upper bound]()
-- [Search Insert Position]()
-
 **Binary Search[1D,2D,Array,Search Space]**
 
 #### BS on 1D Arrays
