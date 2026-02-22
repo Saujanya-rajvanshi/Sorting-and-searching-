@@ -810,19 +810,8 @@ binarySearch(arr, 0, n-1, key);
 
 ### Time Complexity
 
-Each step divides array into half.
-
-If n = 16
-
-16 → 8 → 4 → 2 → 1
-
-So number of steps = log₂(n)
-
-#### ⏱ Complexity
-
-* Best Case → O(1)
-* Average → O(log n)
-* Worst → O(log n)
+* Iterative → O(log n)
+* Recursive → O(log n) 
 
 #### Space Complexity
 
@@ -848,20 +837,6 @@ int mid = low + (high - low) / 2;
 This prevents overflow.
 
 
-### Conditions to Use Binary Search
-
-* Array must be sorted
-* Random access available (array, vector)
-* Searching in monotonic condition
-
-### Important Variations 
-
-1. Lower Bound
-2. Upper Bound
-3. First Occurrence
-4. Last Occurrence
-5. Search in Rotated Sorted Array
-6. Binary Search on Answer 
 ---
 
 
