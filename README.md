@@ -689,6 +689,13 @@ int main()
 
 # BINARY SEARCHING 
 
+- [basic](#basic)
+- [lower bound](#Lower-Bound)
+- [upper bound](#Upper-Bound)
+- [Search Insert Position](#Search-Insert-Position)
+
+
+## basic 
 ### Real Life Example
 
 Example: Searching a word in a dictionary
@@ -845,9 +852,17 @@ let mid = Math.floor((low + high) / 2);
 3. First Occurrence
 4. Last Occurrence
 5. Search in Rotated Sorted Array
-6. Binary Search on Answer (Very Important)
-
+6. Binary Search on Answer 
 ---
+
+
+
+
+
+
+
+
+
 
 ## Lower Bound 
 
@@ -922,6 +937,152 @@ int lowerBound(int arr[], int n, int target) {
 ```
 
 ---
+
+
+## Upper Bound
+
+Definition : <br>
+**Upper Bound = First index where element > target**
+<br>
+⚠ Array must be **sorted**
+<br>
+Example : 
+```cpp
+arr = {1, 2, 3, 3, 5, 8, 8, 10, 11}
+target = 8
+```
+<br>
+Output → **7** (first element > 8 → 10)
+<br>
+If:
+```cpp
+target = 3
+```
+<br>
+Output → **4** (first element > 3 → 5)
+<br>
+If:
+<br>
+```cpp
+target = 20
+```
+<br>
+Output → **n** (out of range)
+
+### Logic
+
+* If `arr[mid] > target`
+  → This **may be answer**
+  → Move left (`high = mid - 1`)
+* Else
+  → Move right (`low = mid + 1`)
+
+Time Complexity → **O(log n)**
+
+### Code 
+
+```cpp
+int upperBound(int arr[], int n, int target) {
+    int low = 0, high = n - 1;
+    int ans = n;  // default if not found
+
+    while(low <= high) {
+        int mid = low + (high - low) / 2;
+
+        if(arr[mid] > target) {
+            ans = mid;
+            high = mid - 1;  // search left
+        }
+        else {
+            low = mid + 1;   // search right
+        }
+    }
+
+    return ans;
+}
+```
+
+### STL Version
+
+```cpp
+#include <algorithm>
+
+int idx = upper_bound(arr, arr + n, target) - arr;
+```
+
+---
+
+
+## Search Insert Position
+
+```cpp
+#include <bits/stdc++.h>
+using namespace std;
+
+int searchInsert(vector<int>& arr, int x) {
+
+    int n = arr.size();
+    int low = 0, high = n - 1;
+    int ans = n;   // default position if x is greater than all elements
+
+    while(low <= high) {
+
+        int mid = low + (high - low) / 2;  // avoid overflow
+
+        // maybe an answer
+        if(arr[mid] >= x) {
+            ans = mid;
+            high = mid - 1;   // look on left for smaller index
+        }
+        else {
+            low = mid + 1;    // look on right
+        }
+    }
+
+    return ans;
+}
+
+int main() {
+    vector<int> arr = {1, 3, 5, 6};
+
+    cout << searchInsert(arr, 5) << endl; // 2
+    cout << searchInsert(arr, 2) << endl; // 1
+    cout << searchInsert(arr, 7) << endl; // 4
+    cout << searchInsert(arr, 0) << endl; // 0
+
+    return 0;
+}
+```
+
+## finding floar
+
+```cpp
+int findFloor(int arr[], int n, int x) {
+    int low = 0, high = n - 1;
+    int ans = -1;
+
+    while(low <= high) {
+        int mid = low + (high - low) / 2;
+
+        if(arr[mid] <= x) {
+            ans = arr[mid];
+            low = mid + 1;   // search right
+        }
+        else {
+            high = mid - 1;  // search left
+        }
+    }
+
+    return ans;
+}
+```
+
+
+
+
+
+
+
 
 
 
