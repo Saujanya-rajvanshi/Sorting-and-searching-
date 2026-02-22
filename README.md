@@ -682,6 +682,167 @@ int main()
 
 # BINARY SEARCHING 
 
+### Real Life Example
+
+Example: Searching a word in a dictionary
+
+* Open middle page
+* If your word comes before → go left
+* If after → go right
+* Repeat
+
+You eliminate **half** every step. <br>
+That’s why time complexity is **log n**.
+
+### Coding Problem Example
+
+#### Problem:
+
+Find index of `key` in sorted array.
+
+```
+Input:
+arr = {1,3,5,7,9,11}
+key = 7
+
+Output:
+3
+```
+
+### Iterative Code (Most Asked in Interviews)
+
+```cpp
+int binarySearch(int arr[], int n, int key) {
+    int low = 0, high = n - 1;
+
+    while(low <= high) {
+        int mid = low + (high - low) / 2;
+
+        if(arr[mid] == key)
+            return mid;
+
+        else if(arr[mid] < key)
+            low = mid + 1;
+
+        else
+            high = mid - 1;
+    }
+
+    return -1;
+}
+```
+
+
+### Recursive Code
+
+```cpp
+int binarySearch(int arr[], int low, int high, int key) {
+
+    if(low > high)
+        return -1;
+
+    int mid = low + (high - low) / 2;
+
+    if(arr[mid] == key)
+        return mid;
+
+    else if(arr[mid] < key)
+        return binarySearch(arr, mid + 1, high, key);
+
+    else
+        return binarySearch(arr, low, mid - 1, key);
+}
+```
+
+Call like:
+
+```cpp
+binarySearch(arr, 0, n-1, key);
+```
+
+### Time Complexity
+
+Each step divides array into half.
+
+If n = 16
+
+16 → 8 → 4 → 2 → 1
+
+So number of steps = log₂(n)
+
+#### ⏱ Complexity
+
+* Best Case → O(1)
+* Average → O(log n)
+* Worst → O(log n)
+
+#### Space Complexity
+
+* Iterative → O(1)
+* Recursive → O(log n) (stack space)
+
+### Overflow Case
+
+Wrong way:
+
+```cpp
+int mid = (low + high) / 2;
+```
+
+If `low` and `high` are very large → integer overflow.
+
+Correct way:
+
+```cpp
+int mid = low + (high - low) / 2;
+```
+
+This prevents overflow.
+
+
+### Conditions to Use Binary Search
+
+✔ Array must be sorted
+✔ Random access available (array, vector)
+✔ Searching in monotonic condition
+
+### Languages (Basic Template)
+
+#### C++
+
+Same as above.
+
+#### Java
+
+```java
+int mid = low + (high - low) / 2;
+```
+
+#### Python
+
+```python
+while low <= high:
+    mid = (low + high) // 2
+```
+
+#### JavaScript
+
+```javascript
+let mid = Math.floor((low + high) / 2);
+```
+
+### Important Variations 
+
+1. Lower Bound
+2. Upper Bound
+3. First Occurrence
+4. Last Occurrence
+5. Search in Rotated Sorted Array
+6. Binary Search on Answer (Very Important)
+
+---
+
+
 ### **Binary Search[1D,2D,Array,Search Space]**
 
 #### BS on 1D Arrays
