@@ -849,6 +849,82 @@ let mid = Math.floor((low + high) / 2);
 
 ---
 
+## Lower Bound 
+
+Definition : <br>
+**Lower Bound = First index where element ≥ target**
+<br>
+It gives:
+
+* First occurrence of target
+* Or position where target should be inserted
+<br>
+⚠ Array must be **sorted**
+<br>
+Example :
+
+```cpp
+arr = {1, 2, 3, 3, 5, 8, 8, 10, 11}
+target = 8
+```
+
+Output → **5** (first 8)
+<br>
+If:
+
+```cpp
+target = 4
+```
+
+Output → **4** (position of 5)
+
+---
+
+If:
+
+```cpp
+target = 20
+```
+
+Output → **n** (out of range)
+
+### Logic
+
+* If `arr[mid] >= target`
+  → This **may be answer**
+  → Move left (`high = mid - 1`)
+* Else
+  → Move right (`low = mid + 1`)
+
+Time Complexity → **O(log n)**
+
+### Code 
+
+```cpp
+int lowerBound(int arr[], int n, int target) {
+    int low = 0, high = n - 1;
+    int ans = n;  // default if not found
+
+    while(low <= high) {
+        int mid = low + (high - low) / 2;
+
+        if(arr[mid] >= target) {
+            ans = mid;
+            high = mid - 1;  // search left
+        }
+        else {
+            low = mid + 1;   // search right
+        }
+    }
+
+    return ans;
+}
+```
+
+---
+
+
+
 
 ### **Binary Search[1D,2D,Array,Search Space]**
 
