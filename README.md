@@ -1161,12 +1161,118 @@ pair<int,int> firstAndLast(int arr[], int n, int x) {
 
 
 
+## search in rotated sorted array i
+```cpp
+int search(vector<int>& arr, int n, int k) {
+    int low = 0, high = n - 1;
+
+    while(low <= high) {
+        int mid = low + (high - low) / 2;
+
+        if(arr[mid] == k)
+            return mid;
+
+        // Left half is sorted
+        if(arr[low] <= arr[mid]) {
+
+            if(arr[low] <= k && k <= arr[mid])
+                high = mid - 1;
+            else
+                low = mid + 1;
+        }
+
+        // Right half is sorted
+        else {
+
+            if(arr[mid] <= k && k <= arr[high])
+                low = mid + 1;
+            else
+                high = mid - 1;
+        }
+    }
+
+    return -1;
+}
+```
+
+## search in rotated sorted array ii
+
+* for duplicates
+* when the left right checking wont work -> [3,1,2,3,3,3,3]
+```cpp
+bool searchInARotatedSortedArrayII(vector<int>& arr, int k) {
+    int n = arr.size();
+    int low = 0, high = n - 1;
+
+    while (low <= high) {
+        int mid = low + (high - low) / 2;
+
+        if (arr[mid] == k)
+            return true;
+
+        // If duplicates at edges
+        if (arr[low] == arr[mid] && arr[mid] == arr[high]) {
+            low++;
+            high--;
+            continue;
+        }
+
+        // Left half sorted
+        if (arr[low] <= arr[mid]) {
+            if (arr[low] <= k && k <= arr[mid])
+                high = mid - 1;
+            else
+                low = mid + 1;
+        }
+        // Right half sorted
+        else {
+            if (arr[mid] <= k && k <= arr[high])
+                low = mid + 1;
+            else
+                high = mid - 1;
+        }
+    }
+
+    return false;
+}
+```
+
+
+## find minimum in rotated sorted array
+```cpp
+#include <bits/stdc++.h>
+using namespace std;
+
+int findMin(vector<int>& arr) {
+    int low = 0, high = arr.size() - 1;
+    int ans = INT_MAX;
+
+    while (low <= high) {
+        int mid = low + (high - low) / 2;
+
+        // If left part is sorted
+        if (arr[low] <= arr[mid]) {
+            ans = min(ans, arr[low]);
+            low = mid + 1;
+        }
+        else {  // Right part sorted
+            ans = min(ans, arr[mid]);
+            high = mid - 1;
+        }
+    }
+    return ans;
+}
+```
+
+```cpp
+// optimal 
+
+
+
+
 
 ## count occurrences of a number in a sorted array with duplicates
 ## count occurrences of a number in a sorted array with duplicates
-## search in rotated sorted array i
-## search in rotated sorted array ii
-## find minimum in rotated sorted array
 ## find out how many times has an array been rotated
 ## single element in a sorted array
 ## find peak element
