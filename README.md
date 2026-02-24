@@ -1266,18 +1266,169 @@ int findMin(vector<int>& arr) {
 
 ```cpp
 // optimal 
+int findMin(vector<int>& arr)
+{
+    int low = 0, high = arr.size() - 1;
+    int ans = INT_MAX;
+
+    while(low <= high) {
+        int mid = (low + high) / 2;
+
+        // If whole search space is sorted
+        if(arr[low] <= arr[high]) {
+            ans = min(ans, arr[low]);
+            break;
+        }
+
+        // Left half sorted
+        if(arr[low] <= arr[mid]) {
+            ans = min(ans, arr[low]);
+            low = mid + 1;
+        }
+        // Right half sorted
+        else {
+            ans = min(ans, arr[mid]);
+            high = mid - 1;
+        }
+    }
+    return ans;
+}
+```
 
 
-
-
-
-## count occurrences of a number in a sorted array with duplicates
-## count occurrences of a number in a sorted array with duplicates
 ## find out how many times has an array been rotated
+```cpp
+int findMinIndex(vector<int>& arr) {
+    int low = 0, high = arr.size() - 1;
+    int ans = INT_MAX;
+    int index = -1;
+
+    while (low <= high) {
+        int mid = (low + high) / 2;
+
+        // If whole search space is sorted
+        if (arr[low] <= arr[high]) {
+            if (arr[low] < ans) {
+                ans = arr[low];
+                index = low;
+            }
+            break;
+        }
+
+        // If left half is sorted
+        if (arr[low] <= arr[mid]) {
+            if (arr[low] < ans) {
+                ans = arr[low];
+                index = low;
+            }
+            low = mid + 1;
+        }
+        else {  // Right half is sorted
+            if (arr[mid] < ans) {
+                ans = arr[mid];
+                index = mid;
+            }
+            high = mid - 1;
+        }
+    }
+
+    return index;
+}
+```
+
+
 ## single element in a sorted array
+```cpp
+int singleNonDuplicate(vector<int>& arr) {
+    int n = arr.size();
+
+    if(n == 1) return arr[0];
+
+    for(int i = 0; i < n; i++) {
+
+        if(i == 0) {
+            if(arr[i] != arr[i+1]) return arr[i];
+        }
+        else if(i == n-1) {
+            if(arr[i] != arr[i-1]) return arr[i];
+        }
+        else {
+            if(arr[i] != arr[i-1] && arr[i] != arr[i+1])
+                return arr[i];
+        }
+    }
+    return -1;
+}
+```
+
+* with binary search
+```cpp
+int singleNonDuplicate(vector<int>& arr)
+{
+    int n = arr.size();
+
+    if(n == 1) return arr[0];
+
+    if(arr[0] != arr[1]) return arr[0];
+    if(arr[n-1] != arr[n-2]) return arr[n-1];
+
+    int low = 1, high = n - 2;
+
+    while(low <= high) {
+        int mid = low + (high - low) / 2;
+
+        // If mid is the single element
+        if(arr[mid] != arr[mid+1] && arr[mid] != arr[mid-1])
+            return arr[mid];
+
+        // We are in left half (valid pairing side)
+        if((mid % 2 == 1 && arr[mid] == arr[mid-1]) ||
+           (mid % 2 == 0 && arr[mid] == arr[mid+1])) {
+            low = mid + 1;
+        }
+        else {   // We are in right half
+            high = mid - 1;
+        }
+    }
+
+    return -1; // Safety return
+}
+```
+
+
 ## find peak element
+```cpp
+int findPeakElement(vector<int> &arr)
+{
+    int n = arr.size();
 
+    if(n == 1) return 0;
 
+    if(arr[0] > arr[1]) return 0;
+    if(arr[n-1] > arr[n-2]) return n-1;
+
+    int low = 1, high = n - 2;
+
+    while(low <= high) {
+        int mid = low + (high - low) / 2;
+
+        // If mid is peak
+        if(arr[mid] > arr[mid-1] && arr[mid] > arr[mid+1]) {
+            return mid;
+        }
+        // If increasing, move right
+        else if(arr[mid] > arr[mid-1]) {
+            low = mid + 1;
+        }
+        // Else move left
+        else {
+            high = mid - 1;
+        }
+    }
+
+    return -1;  // safety return
+}
+```
 
 
 
