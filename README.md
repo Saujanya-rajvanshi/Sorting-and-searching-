@@ -1431,6 +1431,101 @@ int findPeakElement(vector<int> &arr)
 ```
 
 
+### BS on Answers
+
+### find square root of a number in log n
+```cpp
+int floorSqrt(int n)
+{
+    int low = 1, high = n;
+    int ans = 0;
+
+    while(low <= high) {
+        long long mid = low + (high - low) / 2;
+        long long val = mid * mid;
+
+        if(val <= n) {
+            ans = mid;        // store possible answer
+            low = mid + 1;    // try bigger value
+        }
+        else {
+            high = mid - 1;   // go smaller
+        }
+    }
+
+    return ans;
+}
+```
+
+
+
+
+
+
+### find the nth root of a number using binary search
+```cpp
+// return 1 if == m
+// return 0 if < m
+// return 2 if > m
+int func(int mid, int n, int m) {
+    long long ans = 1;
+
+    for(int i = 1; i <= n; i++) {
+        ans = ans * mid;
+
+        if(ans > m) return 2;   // exceeded
+    }
+
+    if(ans == m) return 1;     // exact match
+    return 0;                  // less than m
+}
+
+int NthRoot(int n, int m) {
+    int low = 1, high = m;
+
+    while(low <= high) {
+        int mid = low + (high - low) / 2;
+
+        int midN = func(mid, n, m);
+
+        if(midN == 1) {
+            return mid;
+        }
+        else if(midN == 0) {
+            low = mid + 1;
+        }
+        else {
+            high = mid - 1;
+        }
+    }
+
+    return -1;   // if no integer nth root exists
+}
+```
+
+
+
+
+
+
+
+
+
+
+
+
+- [koko eating bananas](#koko-eating-bananas)
+- [minimum days to make m bouquets](#minimum-days-to-make-m-bouquets)
+- [find the smallest divisor](#find-the-smallest-divisor)
+- [capacity to ship packages within d days](#capacity-to-ship-packages-within-d-days)
+- [kth missing positive number](#kth-missing-positive-number)
+- [aggressive cows](#aggressive-cows)
+- [book allocation problem](#book-allocation-problem)
+- [split array - largest sum](#split-array---largest-sum)
+- [painter's partition](#painters-partition)
+- [minimize max distance to gas station](#minimize-max-distance-to-gas-station)
+- [median of 2 sorted arrays](#median-of-2-sorted-arrays)
+- [kth element of 2 sorted arrays](#kth-element-of-2-sorted-arrays)
 
 
 
