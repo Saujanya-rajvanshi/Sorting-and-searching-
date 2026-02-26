@@ -1503,6 +1503,153 @@ int NthRoot(int n, int m) {
 }
 ```
 
+### koko eating bananas
+```cpp
+#include <iostream>
+#include <vector>
+#include <cmath>
+#include <climits>
+using namespace std;
+
+// Find maximum pile
+int findMax(vector<int> &v) {
+    int maxi = INT_MIN;
+    for(int i = 0; i < v.size(); i++) {
+        maxi = max(maxi, v[i]);
+    }
+    return maxi;
+}
+
+// Calculate total hours needed at given speed
+int calculateTotalHours(vector<int> &v, int hourly) {
+    int totalH = 0;
+    for(int i = 0; i < v.size(); i++) {
+        totalH += ceil((double)v[i] / hourly);
+    }
+    return totalH;
+}
+
+// Main function
+int minimumRateToEatBananas(vector<int> v, int h) {
+    int low = 1, high = findMax(v);
+
+    while(low <= high) {
+        int mid = low + (high - low) / 2;
+
+        int totalH = calculateTotalHours(v, mid);
+
+        if(totalH <= h) {
+            high = mid - 1;   // try smaller speed
+        }
+        else {
+            low = mid + 1;    // increase speed
+        }
+    }
+
+    return low;   // minimum valid speed
+}
+```
+
+
+
+### minimum days to make m bouquets
+```cpp
+#include <iostream>
+#include <vector>
+#include <climits>
+using namespace std;
+
+// Check if possible to make m bouquets
+bool possible(vector<int> &arr, int day, int m, int k) {
+    int cnt = 0;
+    int noOfB = 0;
+
+    for(int i = 0; i < arr.size(); i++) {
+
+        if(arr[i] <= day) {
+            cnt++;
+        }
+        else {
+            noOfB += (cnt / k);
+            cnt = 0;
+        }
+    }
+
+    // remaining flowers
+    noOfB += (cnt / k);
+
+    return noOfB >= m;
+}
+
+int roseGarden(vector<int> arr, int m, int k) {
+
+    long long totalFlowersNeeded = 1LL * m * k;
+    if(totalFlowersNeeded > arr.size()) return -1;
+
+    int mini = INT_MAX, maxi = INT_MIN;
+
+    for(int i = 0; i < arr.size(); i++) {
+        mini = min(mini, arr[i]);
+        maxi = max(maxi, arr[i]);
+    }
+
+    int low = mini, high = maxi;
+
+    while(low <= high) {
+        int mid = low + (high - low) / 2;
+
+        if(possible(arr, mid, m, k)) {
+            high = mid - 1;   // try smaller day
+        }
+        else {
+            low = mid + 1;
+        }
+    }
+
+    return low;
+}
+```
+
+
+
+### find the smallest divisor
+```cpp
+#include <bits/stdc++.h>
+using namespace std;
+
+// Calculate sum after dividing with ceil
+int sumByD(vector<int> &arr, int div) {
+    int sum = 0;
+
+    for(int i = 0; i < arr.size(); i++) {
+        sum += (arr[i] + div - 1) / div;   // integer ceil trick
+    }
+
+    return sum;
+}
+
+int smallestDivisor(vector<int>& arr, int limit) {
+
+    int n = arr.size();
+    if(n > limit) return -1;   // impossible case
+
+    int low = 1;
+    int high = *max_element(arr.begin(), arr.end());
+
+    while(low <= high) {
+        int mid = low + (high - low) / 2;
+
+        if(sumByD(arr, mid) <= limit) {
+            high = mid - 1;   // try smaller divisor
+        }
+        else {
+            low = mid + 1;    // increase divisor
+        }
+    }
+
+    return low;
+}
+```
 
 
 
@@ -1514,9 +1661,11 @@ int NthRoot(int n, int m) {
 
 
 
-- [koko eating bananas](#koko-eating-bananas)
-- [minimum days to make m bouquets](#minimum-days-to-make-m-bouquets)
-- [find the smallest divisor](#find-the-smallest-divisor)
+
+
+
+
+
 - [capacity to ship packages within d days](#capacity-to-ship-packages-within-d-days)
 - [kth missing positive number](#kth-missing-positive-number)
 - [aggressive cows](#aggressive-cows)
