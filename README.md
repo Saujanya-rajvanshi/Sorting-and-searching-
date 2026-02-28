@@ -1651,6 +1651,104 @@ int smallestDivisor(vector<int>& arr, int limit) {
 }
 ```
 
+### capacity to ship packages within d days
+```cpp
+#include <bits/stdc++.h>
+using namespace std;
+
+// Function to calculate days required for a given capacity
+int calculateDays(vector<int>& weights, int capacity) {
+    int days = 1;      // start with day 1
+    int load = 0;
+
+    for(int i = 0; i < weights.size(); i++) {
+
+        // If adding this package exceeds capacity → next day
+        if(load + weights[i] > capacity) {
+            days++;
+            load = weights[i];   // start new day with current weight
+        }
+        else {
+            load += weights[i];
+        }
+    }
+
+    return days;
+}
+
+int shipWithinDays(vector<int>& weights, int d) {
+
+    int low = *max_element(weights.begin(), weights.end()); // minimum capacity
+    int high = accumulate(weights.begin(), weights.end(), 0); // maximum capacity
+
+    while(low <= high) {
+        int mid = (low + high) / 2;
+
+        int requiredDays = calculateDays(weights, mid);
+
+        if(requiredDays <= d) {
+            high = mid - 1;   // try smaller capacity
+        }
+        else {
+            low = mid + 1;    // need bigger capacity
+        }
+    }
+
+    return low;  // minimum valid capacity
+}
+```
+
+* **binary search method**
+```cpp
+#include <bits/stdc++.h>
+using namespace std;
+
+int findDays(vector<int> &weights, int cap) {
+
+    int days = 1;
+    int load = 0;
+
+    for(int i = 0; i < weights.size(); i++) {
+
+        if(load + weights[i] > cap) {
+            days++;
+            load = weights[i];
+        }
+        else {
+            load += weights[i];
+        }
+    }
+
+    return days;
+}
+
+int leastWeightCapacity(vector<int> &weights, int d) {
+
+    int low = *max_element(weights.begin(), weights.end());
+    int high = accumulate(weights.begin(), weights.end(), 0);
+
+    while(low <= high) {
+
+        int mid = (low + high) / 2;
+
+        int numberOfDays = findDays(weights, mid);
+
+        if(numberOfDays <= d) {
+            high = mid - 1;   // try smaller capacity
+        }
+        else {
+            low = mid + 1;    // need bigger capacity
+        }
+    }
+
+    return low;
+}
+```
+
+### kth missing positive number
+```cpp
+
+```
 
 
 
@@ -1660,14 +1758,6 @@ int smallestDivisor(vector<int>& arr, int limit) {
 
 
 
-
-
-
-
-
-
-- [capacity to ship packages within d days](#capacity-to-ship-packages-within-d-days)
-- [kth missing positive number](#kth-missing-positive-number)
 - [aggressive cows](#aggressive-cows)
 - [book allocation problem](#book-allocation-problem)
 - [split array - largest sum](#split-array---largest-sum)
