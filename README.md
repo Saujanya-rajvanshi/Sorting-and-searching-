@@ -1793,6 +1793,61 @@ int missingK(vector<int> vec, int n, int k) {
 
 
 
+## aggressive cows
+
+* linear 
+```cpp
+bool canPlace(vector<int> &stalls, int dist, int cows) {
+    int count = 1, last = stalls[0];
+
+    for(int i = 1; i < stalls.size(); i++) {
+        if(stalls[i] - last >= dist) {
+            count++;
+            last = stalls[i];
+        }
+        if(count >= cows) return true;
+    }
+    return false;
+}
+
+int aggressiveCowsLinear(vector<int> &stalls, int cows) {
+    sort(stalls.begin(), stalls.end());
+
+    int maxDist = stalls.back() - stalls.front();
+
+    for(int d = 1; d <= maxDist; d++) {
+        if(!canPlace(stalls, d, cows))
+            return d - 1;
+    }
+
+    return maxDist;
+}
+```
+
+* binary
+```cpp
+int aggressiveCows(vector<int> &stalls, int cows) {
+    sort(stalls.begin(), stalls.end());
+
+    int low = 1;
+    int high = stalls.back() - stalls.front();
+    int ans = 0;
+
+    while(low <= high) {
+        int mid = (low + high) / 2;
+
+        if(canPlace(stalls, mid, cows)) {
+            ans = mid;
+            low = mid + 1;
+        }
+        else {
+            high = mid - 1;
+        }
+    }
+
+    return ans;
+}
+```
 
 
 
@@ -1806,7 +1861,19 @@ int missingK(vector<int> vec, int n, int k) {
 
 
 
-- [aggressive cows](#aggressive-cows)
+
+
+
+
+
+
+
+
+
+
+
+
+
 - [book allocation problem](#book-allocation-problem)
 - [split array - largest sum](#split-array---largest-sum)
 - [painter's partition](#painters-partition)
