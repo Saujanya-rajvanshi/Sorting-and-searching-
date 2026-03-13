@@ -1892,22 +1892,73 @@ int findPages(vector<int> &arr, int n, int m) {
 }
 ```
 
+## split array largest sums
+```cpp
+int countSubarrays(vector<int>& nums, int maxSum) {
+    int subarrays = 1;
+    long long sum = 0;
+
+    for(int i = 0; i < nums.size(); i++) {
+        if(sum + nums[i] <= maxSum) {
+            sum += nums[i];
+        }
+        else {
+            subarrays++;
+            sum = nums[i];
+        }
+    }
+
+    return subarrays;
+}
+```
 
 
+## painter's partition
+```cpp
+int countStudents(vector<int>& arr, int pages) {
+    int students = 1;
+    long long pagesStudent = 0;
+
+    for (int i = 0; i < arr.size(); i++) {
+        if (pagesStudent + arr[i] <= pages) {
+            pagesStudent += arr[i];
+        }
+        else {
+            students += 1;
+            pagesStudent = arr[i];
+        }
+    }
+    return students;
+}
+
+int findPages(vector<int>& arr, int n, int m) {
+    if (m > n) return -1;
+
+    int low = *max_element(arr.begin(), arr.end());
+    int high = accumulate(arr.begin(), arr.end(), 0);
+
+    while (low <= high) {
+        int mid = (low + high) / 2;
+        int students = countStudents(arr, mid);
+
+        if (students > m) {
+            low = mid + 1;
+        }
+        else {
+            high = mid - 1;
+        }
+    }
+
+    return low;
+}
+
+int findLargestMinDistance(vector<int> &boards, int k) {
+    return findPages(boards, boards.size(), k);
+}
+```
 
 
-
-
-
-
-
-
-
-
-
-
-- [split array - largest sum](#split-array---largest-sum)
-- [painter's partition](#painters-partition)
+  
 - [minimize max distance to gas station](#minimize-max-distance-to-gas-station)
 - [median of 2 sorted arrays](#median-of-2-sorted-arrays)
 - [kth element of 2 sorted arrays](#kth-element-of-2-sorted-arrays)
