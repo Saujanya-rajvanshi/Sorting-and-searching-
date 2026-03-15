@@ -723,8 +723,14 @@ int main()
 - [minimize max distance to gas station](#minimize-max-distance-to-gas-station)
 - [median of 2 sorted arrays](#median-of-2-sorted-arrays)
 - [kth element of 2 sorted arrays](#kth-element-of-2-sorted-arrays)
+- [row with maximum numbers of ones](#row-with-maximum-numbers-of-ones)
 
 #### BS on 2D Arrays
+
+- [search in 2D matrix I](#search-in-2D-matrix-I)
+- [search in 2D matrix II](#search-in-2D-matrix-II)
+- [find peak elements II](#find-peak-elements-II)
+- [median in a row wise sorted matrix](#median-in-a-row-wise-sorted-matrix)
 
 
 
@@ -1958,12 +1964,105 @@ int findLargestMinDistance(vector<int> &boards, int k) {
 ```
 
 
-  
-- [minimize max distance to gas station](#minimize-max-distance-to-gas-station)
-- [median of 2 sorted arrays](#median-of-2-sorted-arrays)
-- [kth element of 2 sorted arrays](#kth-element-of-2-sorted-arrays)
+## minimize max distance to gas station
 
+* brute 
+```cpp
+double median(vector<int>& a, vector<int>& b) {
+    vector<int> arr3;
 
+    int n1 = a.size(), n2 = b.size();
+    int i = 0, j = 0;
+
+    // merge both arrays
+    while (i < n1 && j < n2) {
+        if (a[i] < b[j])
+            arr3.push_back(a[i++]);
+        else
+            arr3.push_back(b[j++]);
+    }
+
+    while (i < n1)
+        arr3.push_back(a[i++]);
+
+    while (j < n2)
+        arr3.push_back(b[j++]);
+
+    int n = n1 + n2;
+
+    if (n % 2 == 1) {
+        return arr3[n / 2];
+    }
+
+    return (arr3[n/2] + arr3[n/2 - 1]) / 2.0;
+}
+```
+
+* optimal 
+```cpp
+double median(vector<int>& a, vector<int>& b) {
+    int n1 = a.size(), n2 = b.size();
+
+    int i = 0, j = 0;
+    int n = n1 + n2;
+
+    int ind2 = n / 2;
+    int ind1 = ind2 - 1;
+
+    int cnt = 0;
+    int ind1el = -1, ind2el = -1;
+
+    while (i < n1 && j < n2) {
+
+        if (a[i] < b[j]) {
+            if (cnt == ind1) ind1el = a[i];
+            if (cnt == ind2) ind2el = a[i];
+            cnt++;
+            i++;
+        } 
+        else {
+            if (cnt == ind1) ind1el = b[j];
+            if (cnt == ind2) ind2el = b[j];
+            cnt++;
+            j++;
+        }
+    }
+
+    while (i < n1) {
+        if (cnt == ind1) ind1el = a[i];
+        if (cnt == ind2) ind2el = a[i];
+        cnt++;
+        i++;
+    }
+
+    while (j < n2) {
+        if (cnt == ind1) ind1el = b[j];
+        if (cnt == ind2) ind2el = b[j];
+        cnt++;
+        j++;
+    }
+
+    if (n % 2 == 1) return ind2el;
+
+    return (ind1el + ind2el) / 2.0;
+}
+```
+
+## median of 2 sorted arrays
+
+## kth element of 2 sorted arrays
+
+## row with maximum numbers of ones
+
+# BS on 2D Arrays
+
+## search in 2D matrix I
+
+## search in 2D matrix II
+
+## find peak elements II
+
+## median in a row wise sorted matrix 
 
 
 
