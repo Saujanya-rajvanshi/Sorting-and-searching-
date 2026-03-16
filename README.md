@@ -723,10 +723,10 @@ int main()
 - [minimize max distance to gas station](#minimize-max-distance-to-gas-station)
 - [median of 2 sorted arrays](#median-of-2-sorted-arrays)
 - [kth element of 2 sorted arrays](#kth-element-of-2-sorted-arrays)
-- [row with maximum numbers of ones](#row-with-maximum-numbers-of-ones)
 
 #### BS on 2D Arrays
 
+- [row with maximum numbers of ones](#row-with-maximum-numbers-of-ones)
 - [search in 2D matrix I](#search-in-2D-matrix-I)
 - [search in 2D matrix II](#search-in-2D-matrix-II)
 - [find peak elements II](#find-peak-elements-II)
@@ -2049,14 +2049,177 @@ double median(vector<int>& a, vector<int>& b) {
 ```
 
 ## median of 2 sorted arrays
+```cpp
+double median(vector<int>& a, vector<int>& b) {
+    int n1 = a.size(), n2 = b.size();
+
+    int i = 0, j = 0;
+    int n = n1 + n2;
+
+    int ind2 = n / 2;
+    int ind1 = ind2 - 1;
+
+    int cnt = 0;
+    int ind1el = -1, ind2el = -1;
+
+    while (i < n1 && j < n2) {
+
+        if (a[i] < b[j]) {
+            if (cnt == ind1) ind1el = a[i];
+            if (cnt == ind2) ind2el = a[i];
+            cnt++;
+            i++;
+        } 
+        else {
+            if (cnt == ind1) ind1el = b[j];
+            if (cnt == ind2) ind2el = b[j];
+            cnt++;
+            j++;
+        }
+    }
+
+    while (i < n1) {
+        if (cnt == ind1) ind1el = a[i];
+        if (cnt == ind2) ind2el = a[i];
+        cnt++;
+        i++;
+    }
+
+    while (j < n2) {
+        if (cnt == ind1) ind1el = b[j];
+        if (cnt == ind2) ind2el = b[j];
+        cnt++;
+        j++;
+    }
+
+    if (n % 2 == 1) return ind2el;
+
+    return (ind1el + ind2el) / 2.0;
+}
+```
 
 ## kth element of 2 sorted arrays
+```cpp
+#include <bits/stdc++.h>
+using namespace std;
 
-## row with maximum numbers of ones
+int kthElement(vector<int> &a, vector<int>& b, int n1, int n2, int k) {
+
+    if (n1 > n2) 
+        return kthElement(b, a, n2, n1, k);
+
+    int low = max(0, k - n2);
+    int high = min(k, n1);
+
+    while (low <= high) {
+
+        int mid1 = (low + high) >> 1;
+        int mid2 = k - mid1;
+
+        int l1 = INT_MIN, l2 = INT_MIN;
+        int r1 = INT_MAX, r2 = INT_MAX;
+
+        if (mid1 < n1) r1 = a[mid1];
+        if (mid2 < n2) r2 = b[mid2];
+
+        if (mid1 - 1 >= 0) l1 = a[mid1 - 1];
+        if (mid2 - 1 >= 0) l2 = b[mid2 - 1];
+
+        if (l1 <= r2 && l2 <= r1) {
+            return max(l1, l2);
+        }
+        else if (l1 > r2) {
+            high = mid1 - 1;
+        }
+        else {
+            low = mid1 + 1;
+        }
+    }
+
+    return 0;
+}
+```
 
 # BS on 2D Arrays
 
+## row with maximum numbers of ones
+```cpp
+#include <bits/stdc++.h>
+using namespace std;
+
+int lowerBound(vector<int> arr, int n, int x) {
+
+    int low = 0, high = n - 1;
+    int ans = n;
+
+    while (low <= high) {
+
+        int mid = (low + high) / 2;
+
+        if (arr[mid] >= x) {
+            ans = mid;
+            high = mid - 1;
+        } 
+        else {
+            low = mid + 1;
+        }
+    }
+
+    return ans;
+}
+
+int rowWithMax1s(vector<vector<int>> &matrix, int n, int m) {
+
+    int cnt_max = 0;
+    int index = -1;
+
+    // n * log(m)
+    for (int i = 0; i < n; i++) {
+
+        int cnt_ones = m - lowerBound(matrix[i], m, 1);
+
+        if (cnt_ones > cnt_max) {
+            cnt_max = cnt_ones;
+            index = i;
+        }
+    }
+
+    return index;
+}
+```
+
 ## search in 2D matrix I
+```cpp
+#include <bits/stdc++.h>
+using namespace std;
+
+bool searchMatrix(vector<vector<int>>& mat, int target) {
+
+    int n = mat.size();
+    int m = mat[0].size();
+
+    int low = 0, high = n * m - 1;
+
+    while (low <= high) {
+
+        int mid = (low + high) / 2;
+
+        int row = mid / m;
+        int col = mid % m;
+
+        if (mat[row][col] == target) 
+            return true;
+
+        else if (mat[row][col] < target) 
+            low = mid + 1;
+
+        else 
+            high = mid - 1;
+    }
+
+    return false;
+}
+```
 
 ## search in 2D matrix II
 
