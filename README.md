@@ -2222,11 +2222,139 @@ bool searchMatrix(vector<vector<int>>& mat, int target) {
 ```
 
 ## search in 2D matrix II
+```cpp
+#include <bits/stdc++.h>
+using namespace std;
+
+bool searchElement(vector<vector<int>>& mat, int target) {
+    int n = mat.size();
+    int m = mat[0].size();
+
+    int row = 0, col = m - 1;
+
+    while (row < n && col >= 0) {
+        if (mat[row][col] == target) 
+            return true;
+        else if (mat[row][col] < target) 
+            row++;
+        else 
+            col--;
+    }
+
+    return false;
+}
+```
 
 ## find peak elements II
+```cpp
+#include <bits/stdc++.h>
+using namespace std;
+
+int findMaxIndex(vector<vector<int>>& mat, int n, int m, int col) {
+    int maxValue = -1;
+    int index = -1;
+
+    for (int i = 0; i < n; i++) {
+        if (mat[i][col] > maxValue) {
+            maxValue = mat[i][col];
+            index = i;
+        }
+    }
+    return index;
+}
+
+vector<int> findPeakGrid(vector<vector<int>>& mat) {
+    int n = mat.size();
+    int m = mat[0].size();
+
+    int low = 0, high = m - 1;
+
+    while (low <= high) {
+        int mid = (low + high) / 2;
+
+        int maxRowIndex = findMaxIndex(mat, n, m, mid);
+
+        int left = (mid - 1 >= 0) ? mat[maxRowIndex][mid - 1] : -1;
+        int right = (mid + 1 < m) ? mat[maxRowIndex][mid + 1] : -1;
+
+        if (mat[maxRowIndex][mid] > left && mat[maxRowIndex][mid] > right) {
+            return {maxRowIndex, mid};
+        }
+        else if (mat[maxRowIndex][mid] < left) {
+            high = mid - 1;
+        }
+        else {
+            low = mid + 1;
+        }
+    }
+
+    return {-1, -1};
+}
+```
 
 ## median in a row wise sorted matrix 
+```cpp
+#include <bits/stdc++.h>
+using namespace std;
 
+// Upper Bound: first index where element > x
+int upperBound(vector<int> &arr, int x, int n) {
+    int low = 0, high = n - 1;
+    int ans = n;
+
+    while (low <= high) {
+        int mid = (low + high) / 2;
+
+        if (arr[mid] > x) {
+            ans = mid;
+            high = mid - 1;
+        } 
+        else {
+            low = mid + 1;
+        }
+    }
+    return ans;
+}
+
+// Count elements <= x
+int countSmallEqual(vector<vector<int>> &matrix, int n, int m, int x) {
+    int cnt = 0;
+
+    for (int i = 0; i < n; i++) {
+        cnt += upperBound(matrix[i], x, m);
+    }
+
+    return cnt;
+}
+
+// Find median
+int median(vector<vector<int>> &matrix, int n, int m) {
+
+    int low = INT_MAX, high = INT_MIN;
+
+    // Find range
+    for (int i = 0; i < n; i++) {
+        low = min(low, matrix[i][0]);
+        high = max(high, matrix[i][m - 1]);
+    }
+
+    int req = (n * m) / 2;
+
+    // Binary Search on Answer
+    while (low <= high) {
+        int mid = (low + high) / 2;
+
+        int smallEqual = countSmallEqual(matrix, n, m, mid);
+
+        if (smallEqual <= req)
+            low = mid + 1;
+        else
+            high = mid - 1;
+    }
+
+    return low;
+}
+```
 
 
 
