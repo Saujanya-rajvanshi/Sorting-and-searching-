@@ -20,7 +20,7 @@
 - [sorting visualizer](https://visualgo.net/en/sorting)
   
 
-## bubble sort 
+# Bubble sort 
 #### algorithm
 * iterate , compare two adjacent elem and sort 
 ```
@@ -63,7 +63,7 @@ int main()
     return 0;
 }
 ```
-## insertion sort
+# Insertion sort
 #### algorithm
 * devide , comre with previous , find correct position , insert
 ```
@@ -114,7 +114,7 @@ int main()
 }
 ```
 
-## selection sort
+# Selection sort
 #### algorithm
 find min elem , swap it with the (0 to n) index 
 ```
@@ -168,7 +168,7 @@ int main()
 }
 ```
 
-## merge sort
+# Merge sort
 #### algorithm 
 devide from mid upto one elem , merge 
 ```
