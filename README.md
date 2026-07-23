@@ -20,7 +20,7 @@
 - [sorting visualizer](https://visualgo.net/en/sorting)
   
 
-#### bubble sort 
+## bubble sort 
 #### algorithm
 * iterate , compare two adjacent elem and sort 
 ```
@@ -63,7 +63,7 @@ int main()
     return 0;
 }
 ```
-#### insertion sort
+## insertion sort
 #### algorithm
 * devide , comre with previous , find correct position , insert
 ```
@@ -114,7 +114,7 @@ int main()
 }
 ```
 
-#### selection sort
+## selection sort
 #### algorithm
 find min elem , swap it with the (0 to n) index 
 ```
@@ -168,7 +168,7 @@ int main()
 }
 ```
 
-##### merge sort
+## merge sort
 #### algorithm 
 devide from mid upto one elem , merge 
 ```
@@ -417,7 +417,7 @@ Notice that **only one operator changes**:
 
 The **strict** versions (`<` and `>`) are **not achieved by changing the merge comparison**. Using `<` or `>` in the merge function would make the algorithm unstable and still would **not remove duplicates**. To get a strictly increasing or strictly decreasing sequence, you first sort (using `<=` or `>=`) and then remove duplicates in a separate pass.
 
-##### quick sort
+## quick sort
 ```cpp
 #include <stdio.h>
 
@@ -482,7 +482,7 @@ int main()
 }
 ```
 
-#### heap sort
+## heap sort
 
 ### Heap 
 * **Heap** → Complete Binary Tree
@@ -715,7 +715,7 @@ int main() {
 
 # SEARCHING 
 
-### 🔍 Linear Search 
+## 🔍 Linear Search 
 
 ```c
 int main()
@@ -741,8 +741,7 @@ int main()
 ```
 
 ---
-
-### 🔍 Binary Search — **main only** (sorted array)
+## 🔍 Binary Search — **main only** (sorted array)
 
 ```c
 int main()
