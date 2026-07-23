@@ -252,6 +252,185 @@ int main() {
 }
 ```
 
+```
+The **Merge Sort algorithm itself never changes**. The only thing that changes is the **comparison operator** inside the `merge()` function.
+
+---
+
+# 1. Non-decreasing (Ascending, Duplicates Allowed) ✅ Standard Merge Sort
+
+**Condition:** `A[i] <= A[j]`
+
+```c
+// NON-DECREASING (Ascending)
+// Example: 1 2 2 3 5 7
+
+if (A[i] <= A[j]) {     // <=
+    B[k] = A[i];
+    i++;
+} else {
+    B[k] = A[j];
+    j++;
+}
+```
+
+---
+
+# 2. Strictly Increasing
+
+Merge Sort **cannot produce a strictly increasing array by changing one comparison.**
+
+Why?
+
+Input:
+
+```text
+1 2 2 5
+```
+
+Even after sorting:
+
+```text
+1 2 2 5
+```
+
+The duplicate `2` is still present.
+
+To make it **strictly increasing**, you must **remove duplicates after sorting**.
+
+```c
+// SAME merge() as Non-decreasing
+
+if (A[i] <= A[j]) {
+    B[k] = A[i];
+    i++;
+} else {
+    B[k] = A[j];
+    j++;
+}
+
+// After Merge Sort
+// Remove duplicates separately.
+```
+
+---
+
+# 3. Non-increasing (Descending, Duplicates Allowed)
+
+Only **ONE operator changes.**
+
+```c
+// NON-INCREASING (Descending)
+// Example: 9 8 8 5 2
+
+if (A[i] >= A[j]) {     // >=
+    B[k] = A[i];
+    i++;
+} else {
+    B[k] = A[j];
+    j++;
+}
+```
+
+Everything else remains **exactly the same**.
+
+---
+
+# 4. Strictly Decreasing
+
+Again, Merge Sort cannot create this by comparison alone.
+
+Input
+
+```text
+9 8 8 4
+```
+
+Sorting gives
+
+```text
+9 8 8 4
+```
+
+To obtain
+
+```text
+9 8 4
+```
+
+you must **remove duplicates after sorting**.
+
+The merge comparison is the same as **Non-increasing**:
+
+```c
+if (A[i] >= A[j]) {
+    B[k] = A[i];
+    i++;
+} else {
+    B[k] = A[j];
+    j++;
+}
+```
+
+Then remove duplicates.
+
+---
+
+# Comparison Table
+
+| Type                    | Comparison in `merge()` | Duplicates                        |
+| ----------------------- | ----------------------- | --------------------------------- |
+| **Non-decreasing**      | `if (A[i] <= A[j])`     | ✅ Allowed                         |
+| **Strictly Increasing** | `if (A[i] <= A[j])`     | ❌ Remove duplicates after sorting |
+| **Non-increasing**      | `if (A[i] >= A[j])`     | ✅ Allowed                         |
+| **Strictly Decreasing** | `if (A[i] >= A[j])`     | ❌ Remove duplicates after sorting |
+
+---
+
+# Exactly Where the Code Changes
+
+```c
+// ================================
+// NON-DECREASING (Ascending)
+// ================================
+
+if (A[i] <= A[j])      // <=
+{
+    B[k] = A[i];
+    i++;
+}
+else
+{
+    B[k] = A[j];
+    j++;
+}
+```
+
+```c
+// ================================
+// NON-INCREASING (Descending)
+// ================================
+
+if (A[i] >= A[j])      // >=   <-- ONLY CHANGE
+{
+    B[k] = A[i];
+    i++;
+}
+else
+{
+    B[k] = A[j];
+    j++;
+}
+```
+
+Notice that **only one operator changes**:
+
+* `<=` → ascending (non-decreasing)
+* `>=` → descending (non-increasing)
+
+The **strict** versions (`<` and `>`) are **not achieved by changing the merge comparison**. Using `<` or `>` in the merge function would make the algorithm unstable and still would **not remove duplicates**. To get a strictly increasing or strictly decreasing sequence, you first sort (using `<=` or `>=`) and then remove duplicates in a separate pass.
+```
+
 ##### quick sort
 ```cpp
 #include <stdio.h>
