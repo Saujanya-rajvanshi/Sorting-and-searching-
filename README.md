@@ -254,7 +254,7 @@ int main() {
 
 
 
-# 1. Non-decreasing (Ascending, Duplicates Allowed) ✅ Standard Merge Sort
+### 1. Non-decreasing (Ascending, Duplicates Allowed) ✅ Standard Merge Sort
 
 **Condition:** `A[i] <= A[j]`
 
@@ -271,7 +271,7 @@ if (A[i] <= A[j]) {     // <=
 }
 ```
 
-# 2. Strictly Increasing
+### 2. Strictly Increasing
 
 Merge Sort **cannot produce a strictly increasing array by changing one comparison.**
 
@@ -308,9 +308,7 @@ if (A[i] <= A[j]) {
 // Remove duplicates separately.
 ```
 
----
-
-# 3. Non-increasing (Descending, Duplicates Allowed)
+### 3. Non-increasing (Descending, Duplicates Allowed)
 
 Only **ONE operator changes.**
 
@@ -329,9 +327,7 @@ if (A[i] >= A[j]) {     // >=
 
 Everything else remains **exactly the same**.
 
----
-
-# 4. Strictly Decreasing
+### 4. Strictly Decreasing
 
 Again, Merge Sort cannot create this by comparison alone.
 
@@ -369,7 +365,7 @@ if (A[i] >= A[j]) {
 
 Then remove duplicates.
 
-# Comparison Table
+#### Comparison Table
 
 | Type                    | Comparison in `merge()` | Duplicates                        |
 | ----------------------- | ----------------------- | --------------------------------- |
@@ -378,7 +374,7 @@ Then remove duplicates.
 | **Non-increasing**      | `if (A[i] >= A[j])`     | ✅ Allowed                         |
 | **Strictly Decreasing** | `if (A[i] >= A[j])`     | ❌ Remove duplicates after sorting |
 
-# Exactly Where the Code Changes
+#### Exactly Where the Code Changes
 
 ```c
 // ================================
