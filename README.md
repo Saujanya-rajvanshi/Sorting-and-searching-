@@ -252,10 +252,7 @@ int main() {
 }
 ```
 
-```
-The **Merge Sort algorithm itself never changes**. The only thing that changes is the **comparison operator** inside the `merge()` function.
 
----
 
 # 1. Non-decreasing (Ascending, Duplicates Allowed) ✅ Standard Merge Sort
 
@@ -273,8 +270,6 @@ if (A[i] <= A[j]) {     // <=
     j++;
 }
 ```
-
----
 
 # 2. Strictly Increasing
 
@@ -374,8 +369,6 @@ if (A[i] >= A[j]) {
 
 Then remove duplicates.
 
----
-
 # Comparison Table
 
 | Type                    | Comparison in `merge()` | Duplicates                        |
@@ -384,8 +377,6 @@ Then remove duplicates.
 | **Strictly Increasing** | `if (A[i] <= A[j])`     | ❌ Remove duplicates after sorting |
 | **Non-increasing**      | `if (A[i] >= A[j])`     | ✅ Allowed                         |
 | **Strictly Decreasing** | `if (A[i] >= A[j])`     | ❌ Remove duplicates after sorting |
-
----
 
 # Exactly Where the Code Changes
 
@@ -429,7 +420,6 @@ Notice that **only one operator changes**:
 * `>=` → descending (non-increasing)
 
 The **strict** versions (`<` and `>`) are **not achieved by changing the merge comparison**. Using `<` or `>` in the merge function would make the algorithm unstable and still would **not remove duplicates**. To get a strictly increasing or strictly decreasing sequence, you first sort (using `<=` or `>=`) and then remove duplicates in a separate pass.
-```
 
 ##### quick sort
 ```cpp
